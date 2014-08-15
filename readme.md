@@ -1,0 +1,1 @@
+This App is to (currently) record sensor data from accelerometer, gyroscope, and gps at the same time on Android phones. Still in Alpha, use at your own risk.
