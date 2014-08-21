@@ -63,18 +63,18 @@ gpstable.addColumn("time");
  gpstable.addColumn("altitude");
 
 // below here is from button example
-color baseColor = color(102);
+color baseColor = color(66);
   currentcolor = baseColor;
   
     // Define and create rectangle button
- color buttoncolor = color(102);
- color highlight = color(51); 
-  rect1 = new RectButton(width/2, 2*height/4, width/4, buttoncolor, highlight);
+ color buttoncolor = color(99);
+ color highlight = color(77); 
+  rect1 = new RectButton(width/2, 2*height/4, width/2, buttoncolor, highlight);
 
   // Define and create rectangle button
-  buttoncolor = color(51);
-  highlight = color(0); 
-  rect2 = new RectButton(width/2, 2*height/4, 50, buttoncolor, highlight);
+  buttoncolor = color(222);
+  highlight = color(111); 
+  rect2 = new RectButton(width/2, 3*height/4, width/2, buttoncolor, highlight);
 //above here is from button example
 
 
@@ -97,14 +97,14 @@ void draw()
     "z: "+ nfp(accelZ,1,3),width/2,0,width/2,height/2);
         
     // display GPS bottom left
-     if (location.getProvider() == "none")
+ if (location.getProvider() == "none"){
     text("Location data is unavailable. \n" +
-      "Please check your location settings.",  0,height/2,width/2,height/2);
-  else
+      "Please check your location settings.",  0,height/2,width/2,height/2);}
+  else{
     text("Latitude: " + latitude + "\n" + 
       "Longitude: " + longitude + "\n" + 
       "Altitude: " + altitude + "\n" + 
-      "Provider: " + location.getProvider(),  0,height/2,width/2,height/2);  
+      "Provider: " + location.getProvider(),  0,height/2,width/2,height/2);  }
   // getProvider() returns "gps" if GPS is available
   // otherwise "network" (cell network) or "passive" (WiFi MACID)
   
@@ -115,14 +115,17 @@ void draw()
   rect1.display();
   rect2.display();
   
+  text("Start/Stop",width/2,height/4,width,3*height/4);
+  text("Save",width/2,3*height/4,width,height);
   // above here from button example
   
-  
+  /*
     if(mousePressed ){
     text("Is pressing",width/2,height/2,width/2,height/2);
     } else{
       text("No Pressure",width/2,height/2,width/2,height/2);
-    }
+    }}
+	
     
     if( isCapturing){
       text("RECORDING DATA (touch to stop)",3*width/4,3*height/4,width/4,height/4);
@@ -130,17 +133,12 @@ void draw()
     }else{
         text("Not Recording (touch to start)",3*width/4,3*height/4,width/4,height/4);
 		
+		
 saveTable(gyrotable,"//sdcard//data/mygyro.csv");
 saveTable(acceltable,"//sdcard//data/myaccel.csv");
 saveTable(gpstable,"//sdcard//data/mygps.csv");
+*/
 
-
-//   if(gyronext != null){
-//   println(gyronext[1]);
-//   saveStrings("//sdcard//newfolder/myarray.txt", gyronext);
-//   }
-  }
-  
   
 }
 
@@ -185,13 +183,6 @@ newRow.setFloat("AccelY", y);
 newRow.setFloat("AccelZ", z);
 }}
 
-/*  boolean overButton ( int x, int Y, int width, int height){ //My idea for overbutton
-  if (mouseX >= x && mouseX <= x+rectWidth &&
-  mouseY >= Y && mouseY <= Y+rectHeight){
-    return true;}
-    else {
-      return false;}
-} */
 
 void onLocationEvent(double _latitude, double _longitude, double _altitude)
 {
@@ -284,7 +275,7 @@ class RectButton extends Button // from button example
 
   boolean over() 
   {
-    if( overRect(x, y, size) ) {
+    if( overRect(x, y, size,size) ) {
       over = true;
       return true;
     } 
